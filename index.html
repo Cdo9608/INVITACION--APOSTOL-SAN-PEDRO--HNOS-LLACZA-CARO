@@ -784,6 +784,11 @@ function getDestImageSrc(direction) {
 
 function startDrag(e) {
     if (busy) return;
+    // Si hay más de un dedo (pinch-to-zoom), no iniciar el drag
+    if (e.touches && e.touches.length > 1) {
+        dragActive = false;
+        return;
+    }
     dragStartX  = e.touches ? e.touches[0].clientX : e.clientX;
     dragActive  = true;
     dragDelta   = 0;
@@ -792,6 +797,15 @@ function startDrag(e) {
 
 function onDrag(e) {
     if (!dragActive || busy) return;
+    // Si aparece un segundo dedo, abortar drag para permitir pinch-to-zoom
+    if (e.touches && e.touches.length > 1) {
+        dragActive = false;
+        cleanFold();
+        const mag = getMagazine();
+        mag.style.transition = 'transform 0.2s ease';
+        mag.style.transform = '';
+        return;
+    }
     e.preventDefault();
 
     const clientX  = e.touches ? e.touches[0].clientX : e.clientX;
