@@ -35,7 +35,7 @@
             mix-blend-mode: multiply;
         }
 
-        /* ── GLASS VIGNETTE SIDES ── (efecto Heyzine) */
+        /* ── GLASS VIGNETTE SIDES ── */
         body::after {
             content: '';
             position: fixed;
@@ -107,7 +107,7 @@
 
         .cover-wrap {
             width: 100%;
-            max-width: min(520px, 90vw);
+            max-width: min(560px, 50vw);
             cursor: pointer;
             margin: 8px 0 10px;
         }
@@ -158,37 +158,38 @@
             width: 100%;
             max-width: 520px;
             border-top: 1px solid rgba(44,36,32,0.18);
-            padding: 10px 0 8px;
+            padding: 7px 0 5px;
             margin-top: auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 28px;
+            gap: 18px;
         }
 
-        .p-footer-logo { width: 56px; height: 56px; object-fit: contain; }
+        .p-footer-logo { width: 40px; height: 40px; object-fit: contain; }
 
         .p-footer-txt {
             font-family: 'Cinzel', serif;
-            font-size: clamp(9px, 2vw, 12px);
+            font-size: clamp(7px, 1.6vw, 10px);
             letter-spacing: 0.12em;
             color: var(--text);
             opacity: 0.90;
-            line-height: 1.9;
+            line-height: 1.7;
             text-align: center;
         }
         .p-footer-txt small { display: block; font-size: .85em; color: var(--text-light); opacity: .95; }
 
         .p-footer-qr {
-            width: 70px; height: 70px;
+            width: 52px; height: 52px;
             object-fit: contain;
             background: #fff;
             border-radius: 4px;
-            padding: 4px;
+            padding: 3px;
             border: 1px solid rgba(44,36,32,.3);
             cursor: pointer;
         }
 
+        /* ── VISOR ── */
         #visor {
             display: none;
             position: fixed;
@@ -253,8 +254,10 @@
         }
         .btn-audio svg { width: 24px; height: 24px; fill: currentColor; }
 
+        /* ── STAGE: min-height:0 permite que flex-child se encoja ── */
         .stage {
             flex: 1;
+            min-height: 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -267,7 +270,7 @@
         .book-container {
             position: relative;
             width: 100%;
-            max-width: 1200px;
+            max-width: 1340px;
             margin: 0 auto;
             transform-style: preserve-3d;
         }
@@ -281,37 +284,54 @@
             transform-style: preserve-3d;
         }
 
+        /* ── PAGE-SINGLE: imagen completa, sin recortes, sin fondo negro ── */
         .page-single {
             position: relative;
-            width: 82%;
-            max-width: 560px;
-            background: #000;
+            width: auto;
+            max-width: min(560px, 55vw);
+            max-height: calc(100vh - 130px); /* topbar ~45px + bottom ~75px + margen */
+            background: transparent;
             overflow: hidden;
             box-shadow: 0 8px 40px rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
         .page-single img {
-            width: 100%;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: calc(100vh - 130px);
             display: block;
             pointer-events: none;
             will-change: contents;
+            object-fit: contain;
         }
 
+        /* ── DOUBLE PAGE ── */
         .double-page {
             display: flex;
             width: 100%;
-            background: #000;
+            background: transparent;
             box-shadow: 0 8px 40px rgba(0,0,0,0.7);
+            max-height: calc(100vh - 130px);
         }
         .double-page .page {
             flex: 1;
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
         }
         .double-page .page img {
             width: 100%;
+            height: auto;
+            max-height: calc(100vh - 130px);
             display: block;
             pointer-events: none;
             will-change: contents;
+            object-fit: contain;
         }
 
         .fold-layer {
@@ -452,10 +472,65 @@
             cursor: pointer;
         }
 
+        /* ── DESKTOP ── */
+        @media (min-width: 641px) {
+            .page-single {
+                max-width: min(680px, 55vw);
+                max-height: calc(100vh - 130px);
+            }
+            .page-single img {
+                max-height: calc(100vh - 130px);
+            }
+        }
+
+        /* ── MOBILE ── */
         @media (max-width: 640px) {
             .nav-floating { display: none; }
             .mobile-nav { display: flex; }
-            .page-single { width: 90%; max-width: 100%; }
+
+            .page-single {
+                max-width: 95vw;
+                max-height: calc(100vh - 130px);
+            }
+            .page-single img {
+                max-height: calc(100vh - 130px);
+            }
+
+            #portada {
+                justify-content: center;
+                padding: 20px 16px 20px;
+                gap: 0;
+            }
+            .eyebrow-sub { margin: 3px 0 10px; }
+            .divider { margin: 2px auto 10px; }
+            .cover-wrap {
+                max-width: min(380px, 90vw);
+                margin: 8px 0 8px;
+            }
+            .hint { margin: 8px 0 10px; }
+            .p-footer {
+                margin-top: 16px;
+                padding: 10px 0 8px;
+                gap: 28px;
+            }
+            .p-footer-logo { width: 56px; height: 56px; }
+            .p-footer-qr { width: 70px; height: 70px; }
+        }
+
+        /* ── LAPTOPS CON POCA ALTURA ── */
+        @media (min-width: 641px) and (max-height: 720px) {
+            .page-single {
+                max-height: calc(100vh - 110px);
+            }
+            .page-single img {
+                max-height: calc(100vh - 110px);
+            }
+            .double-page {
+                max-height: calc(100vh - 110px);
+            }
+            .double-page .page img {
+                max-height: calc(100vh - 110px);
+            }
         }
     </style>
 </head>
@@ -784,7 +859,6 @@ function getDestImageSrc(direction) {
 
 function startDrag(e) {
     if (busy) return;
-    // Si hay más de un dedo (pinch-to-zoom), no iniciar el drag
     if (e.touches && e.touches.length > 1) {
         dragActive = false;
         return;
@@ -797,7 +871,6 @@ function startDrag(e) {
 
 function onDrag(e) {
     if (!dragActive || busy) return;
-    // Si aparece un segundo dedo, abortar drag para permitir pinch-to-zoom
     if (e.touches && e.touches.length > 1) {
         dragActive = false;
         cleanFold();
@@ -965,7 +1038,8 @@ function openVisor() {
         buildDots();
         updateUI();
     }
-if (!bgAudio) initBgAudio();
+
+    if (!bgAudio) initBgAudio();
     soundEnabled = true;
     bgAudio.currentTime = 0;
     bgAudio.play().catch(err => {
