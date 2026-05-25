@@ -306,7 +306,8 @@
 
         .double-page {
             display: flex;
-            width: 98vw;
+            width: fit-content;
+            max-width: 98vw;
             height: calc(100vh - 60px);
             background: transparent;
             box-shadow: 0 8px 40px rgba(0,0,0,0.7);
@@ -319,13 +320,13 @@
             align-items: center;
         }
         .double-page .page img {
-            width: 100%;
-            height: 100%;
+            width: auto;
+            height: calc(100vh - 60px);
             max-height: calc(100vh - 60px);
             display: block;
             pointer-events: none;
             will-change: contents;
-            object-fit: cover;
+            object-fit: contain;
         }
 
         .fold-layer {
