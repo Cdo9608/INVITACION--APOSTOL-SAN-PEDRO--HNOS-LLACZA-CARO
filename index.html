@@ -189,6 +189,27 @@
             cursor: pointer;
         }
 
+        /* ── DESKTOP: hint más grande/oscuro, footer más compacto ── */
+        @media (min-width: 641px) {
+            .hint {
+                font-size: clamp(12px, 1.6vw, 16px);
+                letter-spacing: 0.32em;
+                color: var(--text);
+            }
+            @keyframes breathe {
+                0%, 100% { opacity: 0.55; }
+                50% { opacity: 1; }
+            }
+            .p-footer {
+                margin-top: 18px;
+                gap: 20px;
+            }
+            .p-footer-logo { width: 44px; height: 44px; }
+            .p-footer-qr   { width: 54px; height: 54px; }
+            .p-footer-txt  { font-size: clamp(8px, 1.1vw, 10px); }
+            .p-footer-txt small { font-size: .82em; }
+        }
+
         #visor {
             display: none;
             position: fixed;
@@ -495,7 +516,25 @@
         @media (max-width: 640px) {
             .nav-floating { display: none; }
             .mobile-nav { display: flex; }
-            .page-single { width: 90%; max-width: 100%; }
+            /* Restaurar page-single exactamente como era antes en móvil */
+            .page-single {
+                width: 90%;
+                max-width: 100%;
+                height: auto;
+                background: #000;
+            }
+            .page-single img {
+                width: 100%;
+                height: auto;
+                max-height: none;
+                max-width: 100%;
+                object-fit: fill;
+            }
+            /* Restaurar stage en móvil */
+            .stage {
+                align-items: center;
+                overflow: auto;
+            }
             /* En móvil: mostrar topbar, ocultar controles de escritorio en bottom */
             .topbar { display: flex !important; }
             .bottom-left { display: none; }
