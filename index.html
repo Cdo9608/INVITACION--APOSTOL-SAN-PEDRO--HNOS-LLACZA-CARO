@@ -35,7 +35,7 @@
             mix-blend-mode: multiply;
         }
 
-        /* ── GLASS VIGNETTE SIDES ── */
+        /* ── GLASS VIGNETTE SIDES ── (efecto Heyzine) */
         body::after {
             content: '';
             position: fixed;
@@ -73,8 +73,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            padding: 28px 16px 32px;
+            justify-content: center;
+            padding: 20px 16px 20px;
             gap: 0;
         }
 
@@ -107,9 +107,9 @@
 
         .cover-wrap {
             width: 100%;
-            max-width: min(560px, 50vw);
+            max-width: min(520px, 90vw);
             cursor: pointer;
-            margin: 8px 0 10px;
+            margin: 0 0 10px;
         }
 
         .cover-inner {
@@ -158,38 +158,37 @@
             width: 100%;
             max-width: 520px;
             border-top: 1px solid rgba(44,36,32,0.18);
-            padding: 7px 0 5px;
-            margin-top: auto;
+            padding: 10px 0 8px;
+            margin-top: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 18px;
+            gap: 28px;
         }
 
-        .p-footer-logo { width: 40px; height: 40px; object-fit: contain; }
+        .p-footer-logo { width: 56px; height: 56px; object-fit: contain; }
 
         .p-footer-txt {
             font-family: 'Cinzel', serif;
-            font-size: clamp(7px, 1.6vw, 10px);
+            font-size: clamp(9px, 2vw, 12px);
             letter-spacing: 0.12em;
             color: var(--text);
             opacity: 0.90;
-            line-height: 1.7;
+            line-height: 1.9;
             text-align: center;
         }
         .p-footer-txt small { display: block; font-size: .85em; color: var(--text-light); opacity: .95; }
 
         .p-footer-qr {
-            width: 52px; height: 52px;
+            width: 70px; height: 70px;
             object-fit: contain;
             background: #fff;
             border-radius: 4px;
-            padding: 3px;
+            padding: 4px;
             border: 1px solid rgba(44,36,32,.3);
             cursor: pointer;
         }
 
-        /* ── VISOR ── */
         #visor {
             display: none;
             position: fixed;
@@ -254,10 +253,8 @@
         }
         .btn-audio svg { width: 24px; height: 24px; fill: currentColor; }
 
-        /* ── STAGE: min-height:0 permite que flex-child se encoja ── */
         .stage {
             flex: 1;
-            min-height: 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -270,7 +267,7 @@
         .book-container {
             position: relative;
             width: 100%;
-            max-width: 1340px;
+            max-width: 1200px;
             margin: 0 auto;
             transform-style: preserve-3d;
         }
@@ -284,54 +281,37 @@
             transform-style: preserve-3d;
         }
 
-        /* ── PAGE-SINGLE: imagen completa, sin recortes, sin fondo negro ── */
         .page-single {
             position: relative;
-            width: auto;
-            max-width: min(560px, 55vw);
-            max-height: calc(100vh - 130px); /* topbar ~45px + bottom ~75px + margen */
-            background: transparent;
+            width: 82%;
+            max-width: 560px;
+            background: #000;
             overflow: hidden;
             box-shadow: 0 8px 40px rgba(0,0,0,0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
-
         .page-single img {
-            width: auto;
-            height: auto;
-            max-width: 100%;
-            max-height: calc(100vh - 130px);
+            width: 100%;
             display: block;
             pointer-events: none;
             will-change: contents;
-            object-fit: contain;
         }
 
-        /* ── DOUBLE PAGE ── */
         .double-page {
             display: flex;
             width: 100%;
-            background: transparent;
+            background: #000;
             box-shadow: 0 8px 40px rgba(0,0,0,0.7);
-            max-height: calc(100vh - 130px);
         }
         .double-page .page {
             flex: 1;
             position: relative;
             overflow: hidden;
-            display: flex;
-            align-items: center;
         }
         .double-page .page img {
             width: 100%;
-            height: auto;
-            max-height: calc(100vh - 130px);
             display: block;
             pointer-events: none;
             will-change: contents;
-            object-fit: contain;
         }
 
         .fold-layer {
@@ -472,74 +452,40 @@
             cursor: pointer;
         }
 
-        /* ── DESKTOP ── */
-        @media (min-width: 641px) {
-            .page-single {
-                max-width: min(680px, 55vw);
-                max-height: calc(100vh - 130px);
-            }
-            .page-single img {
-                max-height: calc(100vh - 130px);
-            }
-        }
-
-        /* ── MOBILE ── */
         @media (max-width: 640px) {
             .nav-floating { display: none; }
             .mobile-nav { display: flex; }
-
-            .page-single {
-                max-width: 95vw;
-                max-height: calc(100vh - 130px);
-            }
-            .page-single img {
-                max-height: calc(100vh - 130px);
-            }
-
-            #portada {
-                justify-content: center;
-                padding: 20px 16px 20px;
-                gap: 0;
-            }
-            .eyebrow-sub { margin: 3px 0 10px; }
-            .divider { margin: 2px auto 10px; }
-            .cover-wrap {
-                max-width: min(380px, 90vw);
-                margin: 8px 0 8px;
-            }
-            .hint { margin: 8px 0 10px; }
-            .p-footer {
-                margin-top: 16px;
-                padding: 10px 0 8px;
-                gap: 28px;
-            }
-            .p-footer-logo { width: 56px; height: 56px; }
-            .p-footer-qr { width: 70px; height: 70px; }
+            .page-single { width: 90%; max-width: 100%; }
         }
 
-        /* ── LAPTOPS CON POCA ALTURA ── */
+        /* ── PANTALLAS LAPTOP CON POCA ALTURA (desktop) ── */
         @media (min-width: 641px) and (max-height: 720px) {
-            .page-single {
-                max-height: calc(100vh - 110px);
+            #portada {
+                padding: 12px 16px 12px;
+                justify-content: center;
             }
-            .page-single img {
-                max-height: calc(100vh - 110px);
+            .hint {
+                margin: 4px 0 6px;
             }
-            .double-page {
-                max-height: calc(100vh - 110px);
+            .p-footer {
+                padding: 6px 0 4px;
+                margin-top: 4px;
             }
-            .double-page .page img {
-                max-height: calc(100vh - 110px);
-            }
+            .p-footer-logo { width: 42px; height: 42px; }
+            .p-footer-qr   { width: 54px; height: 54px; }
+        }
+
+        @media (min-width: 641px) and (max-height: 620px) {
+            #portada { padding: 8px 16px 8px; }
+            .p-footer-logo { width: 34px; height: 34px; }
+            .p-footer-qr   { width: 44px; height: 44px; }
+            .p-footer-txt  { font-size: 9px; }
         }
     </style>
 </head>
 <body>
 
 <section id="portada">
-    <p class="eyebrow">✦ APÓSTOL SAN PEDRO ✦</p>
-    <p class="eyebrow-sub">· HNOS. LLACZA CARO · 2027</p>
-    <div class="divider"></div>
     <div class="cover-wrap" id="btn-open">
         <div class="cover-inner">
             <div class="orn orn-tl"></div><div class="orn orn-tr"></div>
@@ -859,6 +805,7 @@ function getDestImageSrc(direction) {
 
 function startDrag(e) {
     if (busy) return;
+    // Si hay más de un dedo (pinch-to-zoom), no iniciar el drag
     if (e.touches && e.touches.length > 1) {
         dragActive = false;
         return;
@@ -871,6 +818,7 @@ function startDrag(e) {
 
 function onDrag(e) {
     if (!dragActive || busy) return;
+    // Si aparece un segundo dedo, abortar drag para permitir pinch-to-zoom
     if (e.touches && e.touches.length > 1) {
         dragActive = false;
         cleanFold();
@@ -1038,8 +986,7 @@ function openVisor() {
         buildDots();
         updateUI();
     }
-
-    if (!bgAudio) initBgAudio();
+if (!bgAudio) initBgAudio();
     soundEnabled = true;
     bgAudio.currentTime = 0;
     bgAudio.play().catch(err => {
